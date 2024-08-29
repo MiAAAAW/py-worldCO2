@@ -1,0 +1,83 @@
+@font-face {
+    font-family: Raleway;
+    src: url(raleway.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Raleway;
+}
+
+/* body {
+    background-color: #0930f1; /* Background color for the entire page 
+} */
+
+body {
+    background-image: url('space.jpg'); /* Ruta a tu imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Hace que la imagen de fondo permanezca fija al hacer scroll */
+}
+
+.navbar {
+    background-color: #01be21; /* Dark color for the navigation bar */
+    color: #fff; /* White text for contrast */
+    padding: 0.5em 4em; /* Adjust padding */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 60px; /* Adjust navbar height */
+}
+
+.container {
+    max-width: 1000em; /* Adjust as needed */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    text-align: center; /* Center the title */
+    margin-top: 0.04em; /* Adjust text position */
+    margin-bottom: 0.04em;
+}
+
+.title p {
+    font-size: 30px; /* Adjust font size as needed */
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center; /* Center the navigation links */
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 1em; /* Adjust spacing between navigation links */
+    margin-top: 1em; /* Align navigation links vertically */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff; /* White text */
+    transition: color 0.3s ease; /* Smooth transition on hover */
+    font-size: 18px; /* Adjust font size for navigation links */
+}
+
+nav ul li a:hover {
+    color: #97999a; /* Change color on hover */
+    text-decoration: none;
+    font-size: 20px; 
+}
+
+/* Dropdown Styles */
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}

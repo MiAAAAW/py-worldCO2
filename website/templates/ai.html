@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block title %}IA{% endblock %}
+{% block main %}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Mostrando la imagen de entrenamiento -->
+            <div class="card mb-4">
+                <img class="card-img-top" src="data:image/png;base64, {{ img1 }}" alt="Imagen de Entrenamiento">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de Entrenamiento</h5>
+                    <p class="card-text">Este gráfico representa los datos de entrenamiento utilizados para entrenar el modelo, y el rendimiento del modelo al predecir las emisiones históricas de CO2.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!-- Mostrando la imagen de predicción -->
+            <div class="card mb-4">
+                <img class="card-img-top" src="data:image/png;base64, {{ img2 }}" alt="Imagen de Predicción">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de Predicción</h5>
+                    <p class="card-text">Este gráfico representa la tendencia predicha de las emisiones de CO2 para los años futuros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <form action="/ai" method="post" id="aiForm">
+            <div class="form-group">
+                <label for="numericValue">Ingresa un valor numérico:</label>
+                <input type="number" class="form-control" id="numericValue" name="numericValue" placeholder="Ingresa un número" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+        <div class="result" id="result" style="display: none;">
+            <!-- Resultado mostrado aquí -->
+        </div>
+    </div>
+    <script>
+        function generatePlot() {
+            var xScale = document.getElementById('numericValue').value;
+            fetch('/generate_plot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'x_scale=' + xScale
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'processing') {
+                    document.getElementById('plot_container').innerHTML = 'El gráfico se está generando...';
+                }
+            });
+        }
+    </script>
+{% endblock %}

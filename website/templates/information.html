@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculos de Emisiones de Carbono</title>
+    <!-- Enlace CDN de Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-PtS5ayop4CwjlRv6yZEzS5SWKkS9b3Fi3ZR4J+Xgcm3Guco3pDeXiCj0S4bjJfWo" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #0ff335;
+            color: white;
+            font-size: 2rem;
+        }
+        .table {
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+    <h2 class="mt-4 mb-5">Cálculos de Emisiones de Carbono</h2>
+
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-lg text-center">
+            <tbody>
+                <tr>
+                    <td>Galones de gasolina equivalentes:</td>
+                    <td id="gasoline"></td>
+                </tr>
+                <tr>
+                    <td>Millas de pasajeros en un coche:</td>
+                    <td id="passenger"></td>
+                </tr>
+                <tr>
+                    <td>Teléfonos inteligentes cargados:</td>
+                    <td id="smartphones"></td>
+                </tr>
+                <tr>
+                    <td>Acres de bosque en EE.UU. necesarios para secuestrar:</td>
+                    <td id="acres"></td>
+                </tr>
+                <tr>
+                    <td>Bolsas de basura recicladas:</td>
+                    <td id="trash_bags"></td>
+                </tr>
+                <tr>
+                    <td>Turbinas eólicas en funcionamiento:</td>
+                    <td id="wind"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Enlaces CDN de Bootstrap JS y Popper.js (para los dropdowns de Bootstrap y otros componentes) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-Ljpco4/GgI0fllWBx9HaBEzZvXEKn7IiQuPTw5NupFF6mLhN+s2vc+rOQ6WGI1NZ" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-ITPyVO2NZoVd8ymI8g/wwrYiz4sduK8uudwos1ELWZLiY6b5wu0Wqtmq8FZh2h1D" crossorigin="anonymous"></script>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const forest_acres = urlParams.get('USforest_acres');
+        const calgasoline_gallons = urlParams.get('calgasoline_gallons');
+        const passenger_miles = urlParams.get('passenger_miles');
+        const smartphones = urlParams.get('smartphones_charged');
+        const transhbags = urlParams.get('trashbags_recycled');
+        const wind_turbines = urlParams.get('windturbines_running');
+
+        document.getElementById('acres').textContent = forest_acres;
+        document.getElementById('gasoline').textContent = calgasoline_gallons;
+        document.getElementById('passenger').textContent = passenger_miles;
+        document.getElementById('smartphones').textContent = smartphones;
+        document.getElementById('trash_bags').textContent = transhbags;
+        document.getElementById('wind').textContent = wind_turbines;
+    </script>
+</body>
+</html>

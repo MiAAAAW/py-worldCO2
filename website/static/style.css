@@ -1,0 +1,216 @@
+/*
+* Below are Cascading Style Sheet (CSS) definitions in use in this file,
+* which allow easily changing how countries are displayed.
+*
+* The styles are applied in the order in which they are defined (and re-defined) here in the preamble.
+*/
+
+@font-face{
+    font-family: Raleway;
+    src: url(raleway.ttf)
+}
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Raleway;
+}
+
+/* body {
+    display: flex;
+    flex-direction: column;
+    min-width: max-content;
+    background-color: #1900fd;
+} */
+
+body {
+    background-image: url('space.jpg'); /* Ruta a tu imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Hace que la imagen de fondo permanezca fija al hacer scroll */
+}
+
+main {
+    min-width: max-content;
+}
+
+
+/*
+* Circles around small countries and territories
+*
+* Change opacity to 1 to display all circles
+*/
+
+.circlexx
+{
+    opacity: 0;
+    fill: #c0c0c0;
+    stroke: #000000;
+    stroke-width: 0.5;
+}
+
+/*
+* Smaller circles around subnational territories: Australian external territories, Chinese SARs, Dutch special municipalities, and French DOMs (overseas regions/departments) [but not French COMs (overseas collectivities)]
+*
+* Change opacity to 1 to display all circles
+*/
+.subxx
+{
+    opacity: 0;
+    fill: #c0c0c0;
+    stroke: #000000;
+    stroke-width: 0.3;
+}
+
+
+/*
+* Land
+* (all land, as opposed to water, should belong to this class; in order to modify the coastline for land pieces with no borders on them a special class "coastxx" has been added below)
+*/
+.landxx
+{
+    fill: #14f02a;
+    stroke: black;
+    stroke-width: 0.5;
+    fill-rule: evenodd;
+}
+
+/*
+* Styles for coastlines of islands and continents with no borders on them
+* (all of them should also belong to the class "landxx" - to allow for all land to be modified at once by refining "landxx" style's definition further down)
+*/
+.coastxx
+{
+    stroke-width: 0.2;
+}
+
+
+/*
+* Styles for territories without permanent population (the largest of which is Antarctica)
+*
+* Change opacity to 0 to hide all territories
+*/
+.antxx
+{
+    opacity: 1;
+    fill: #aaaaaa; 
+    pointer-events: none;
+}
+
+
+/*
+* Circles around small countries without permanent population
+*
+* Change opacity to 1 to display all circles
+*/
+.noxx
+{
+    opacity: 0;
+    fill: #c0c0c0;
+    stroke: #000000;
+    stroke-width: 0.5;
+}
+
+
+/*
+* Styles for territories with limited or no recognition
+* (all of them - including Taiwan - are overlays (i.e. duplicate layers) over their "host" countries, and so not showing them doesn't leave any gaps on the map)
+*
+* Change opacity to 1 to display all territories
+*/
+.limitxx
+{
+    opacity: 0;
+    fill: #c0c0c0;
+    stroke: black;
+    stroke-width: 0.2;
+    fill-rule: evenodd;
+}
+
+/*
+* Smaller circles around small territories with limited or no recognition
+*
+* Change opacity to 1 to display all circles
+*/
+.unxx
+{
+    opacity: 0;
+    fill: #c0c0c0;
+    stroke: #000000;
+    stroke-width: 0.3;
+}
+
+
+/*
+* Oceans, seas, and large lakes
+*/
+.oceanxx
+{
+    opacity: 1;
+    fill: #07aeeb;
+    stroke: #000000;
+    stroke-width: 0.5;
+}
+
+/*
+* Reserved class names:
+*
+* .eu - for members of European Union
+* .eaeu - for members of Eurasian Economic Union
+*/
+
+.landxx:hover{
+    fill: #D8DDEF;
+    transition: fill 0.2s;
+}
+
+.mainbody{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: max-content;
+}
+
+
+#home{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-left: 15px;
+}
+
+
+#hoverbar{
+    position: fixed;
+    top: 20%;
+    left: 15%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    border: solid black;
+    visibility: hidden;
+    background-color: white;
+    color: black;
+    width: 10vw;
+}
+
+#container > .mission{
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: center;
+}
+
+#container{
+    display:flex;
+    gap:4vmin;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(0%, -50%);
+    color: #1a03c8;
+    background-color: black;
+    object-position: 100% center;
+}
