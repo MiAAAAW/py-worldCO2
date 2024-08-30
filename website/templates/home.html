@@ -161,7 +161,23 @@ main {
 </body>
     <!-- <script src="index.js"></script> -->
 <script>
-  const track = document.getElementById("container");
+const track = document.getElementById("container");
+let currentImageIndex = 0;
+        
+function autoSlideImages() {
+            const images = track.querySelectorAll(".image");
+            const totalImages = images.length;
+            const imageWidth = images[0].offsetWidth + parseFloat(getComputedStyle(images[0]).marginRight);
+            
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            const nextPercentage = -currentImageIndex * imageWidth;
+        
+            track.style.transform = `translate(${nextPercentage}px, -50%)`;
+        }
+        
+// Cambiar imagen cada 3 segundos
+setInterval(autoSlideImages, 1500);
+        
 const info = document.getElementById("info");
 const infoContent = document.getElementById("info-text");
 const images = document.querySelectorAll(".image");
@@ -203,23 +219,14 @@ const imageTexts = [
 
 images.forEach((image, index) => {
     image.addEventListener("click", () => {
-        // Restablecer el contenido del modal
-        infoContent.textContent = "";
-
-        // Mostrar el modal con el texto apropiado
         infoContent.textContent = imageTexts[index];
         info.style.display = "block";
-
-        // Recalcular la posición del modal
-        setModalPosition();
     });
 });
 
 info.addEventListener("click", (event) => {
     if (event.target.classList.contains("info") || event.target.classList.contains("close")) {
         info.style.display = "none";
-        // Restablecer el contenido del modal
-        infoContent.textContent = "";
     }
 });
 
@@ -249,36 +256,31 @@ function init(){
 
         track.style.transform = `translate(${nextPercentage}%, -50%)`;
 
-        for (const box of track.getElementsByClassName("image")) {
+        track.querySelectorAll(".image").forEach(box => {
             box.style.objectPosition = `${100 + nextPercentage}% 50%`;
-        }
+        });
     });
 
-    info.addEventListener("click", (event) => {
-        if (event.target.classList.contains("info") || event.target.classList.contains("close")) {
-            info.style.display = "none";
-        }
-    });
-// Calcular las posiciones máximas permitidas a la izquierda y arriba para el modal
-  const maxLeft = screenWidth - modalWidth;
-    const maxTop = screenHeight - modalHeight;
-
-    // Calcular las posiciones izquierda y superior para el modal
-    let modalLeft = (screenWidth - modalWidth) / 2 + window.scrollX;
-    let modalTop = (screenHeight - modalHeight) / 2 + window.scrollY;
-
-    // Asegurarse de que el modal se mantenga dentro de los límites de la pantalla
-    modalLeft = Math.max(0, Math.min(modalLeft, maxLeft));
-    modalTop = Math.max(0, Math.min(modalTop, maxTop));
-    
-    infoContent.style.left = `${modalLeft}px`;
-    infoContent.style.top = `${modalTop}px`;
-
-    // Llamar a setModalPosition cuando se redimensione o desplace la ventana
     window.addEventListener('resize', setModalPosition);
     window.addEventListener('scroll', setModalPosition);
 }
-window.onload = init();
 
+function setModalPosition() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const modalWidth = infoContent.offsetWidth;
+    const modalHeight = infoContent.offsetHeight;
+
+    let modalLeft = (screenWidth - modalWidth) / 2 + window.scrollX;
+    let modalTop = (screenHeight - modalHeight) / 2 + window.scrollY;
+
+    modalLeft = Math.max(0, Math.min(modalLeft, screenWidth - modalWidth));
+    modalTop = Math.max(0, Math.min(modalTop, screenHeight - modalHeight));
+
+    infoContent.style.left = `${modalLeft}px`;
+    infoContent.style.top = `${modalTop}px`;
+}
+
+window.onload = init;
 </script>
-<!-- {% endblock %} -->
+{% endblock %}

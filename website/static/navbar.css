@@ -23,13 +23,13 @@ body {
 }
 
 .navbar {
-    background-color: #01be21; /* Dark color for the navigation bar */
+    background-color: #5e6a60; /* Dark color for the navigation bar */
     color: #fff; /* White text for contrast */
     padding: 0.5em 4em; /* Adjust padding */
     display: flex;
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    height: 60px; /* Adjust navbar height */
+    height: 100px; /* Adjust navbar height */
 }
 
 .container {

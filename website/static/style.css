@@ -214,3 +214,7 @@ main {
     background-color: black;
     object-position: 100% center;
 }
+
+.row-offset {
+    margin-top: 60px; /* Ajusta el valor en píxeles según tus necesidades */
+}
